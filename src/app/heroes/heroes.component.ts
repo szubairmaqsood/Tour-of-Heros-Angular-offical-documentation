@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './../heroes';
 import { HeroServiceService } from './../hero-service.service';
+import { MessageService } from './../message.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HeroesComponent implements OnInit {
    selectedHero?: Hero;
 
    
-  constructor(private heroService: HeroServiceService) { }
+  constructor(private heroService: HeroServiceService,private messageService: MessageService) { }
 
   
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class HeroesComponent implements OnInit {
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   getHeroes(): void {
